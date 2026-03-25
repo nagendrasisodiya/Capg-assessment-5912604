@@ -1,13 +1,13 @@
 import {test} from "@playwright/test";
-import LoginLogout from "../POM-Files/Day-25-task1-login-logout.page";
+import LoginLogout from "../POM-Files/Day-26-task1-login-logout.page";
 import path = require("node:path");
 import * as fs from "node:fs";
-import Deposit from "../POM-Files/Day-25-task1-deposit.page";
-import Withdraw from "../POM-Files/Day-25-task1-withdraw.page";
-import createCustomer from "../POM-Files/Day-25-task1-createCustomer.page";
+import Deposit from "../POM-Files/Day-26-task1-deposit.page";
+import Withdraw from "../POM-Files/Day-26-task1-withdraw.page";
+import createCustomer from "../POM-Files/Day-26-task1-createCustomer.page";
 
-let json_data=fs.readFileSync(path.join(__dirname, '../testing-data/Day-25-task1.json'))
-let json_data2=fs.readFileSync(path.join(__dirname, '../testing-data/day-25-task1-newcustomer.json'))
+let json_data=fs.readFileSync(path.join(__dirname, '../testing-data/Day-26-task1.json'))
+let json_data2=fs.readFileSync(path.join(__dirname, '../testing-data/day-26-task1-newcustomer.json'))
 
 // @ts-ignore
 let data = JSON.parse(json_data)
