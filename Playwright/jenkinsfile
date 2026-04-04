@@ -1,21 +1,34 @@
-stage('Install Dependencies') {
-    steps {
-        dir('Playwright') {          // ← add this
-            bat 'npm install'
-            bat 'npx playwright install'
-        }
-    }
-}
+pipeline {
+    agent any
 
-stage('Run Tests') {
-    steps {
-        dir('Playwright') {          // ← and here too
-            script {
-                def status = bat(script: 'npx playwright test', returnStatus: true)
-                if (status != 0) {
-                    echo "Tests failed, but continuing to generate reports..."
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                dir('Playwright') {
+                    bat 'npm install'
+                    bat 'npx playwright install'
                 }
             }
+        }
+
+        stage('Run Tests') {
+            steps {
+                dir('Playwright') {
+                    script {
+                        def status = bat(script: 'npx playwright test', returnStatus: true)
+                        if (status != 0) {
+                            echo "Tests failed, but continuing to generate reports..."
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Generating HTML reports...'
+            // publishHTML removed until plugin is installed
         }
     }
 }
